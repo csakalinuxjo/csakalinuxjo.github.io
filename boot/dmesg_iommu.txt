@@ -1,0 +1,46 @@
+csakalinuxjo@csakalinuxjo-pc:~/Asztal$ su
+Jelszó: 
+root@csakalinuxjo-pc:/home/csakalinuxjo/Asztal# dmesg | grep -i iommu
+[    0.000000] Command line: BOOT_IMAGE=/vmlinuz-4.18.0-14-generic root=UUID=cf02f8fb-e078-4cbb-a7a2-ceff1ffaa6e8 ro rootflags=subvol=@ amd_iommu=on iommu=pt
+[    0.000000] Kernel command line: BOOT_IMAGE=/vmlinuz-4.18.0-14-generic root=UUID=cf02f8fb-e078-4cbb-a7a2-ceff1ffaa6e8 ro rootflags=subvol=@ amd_iommu=on iommu=pt
+[    1.291517] iommu: Adding device 0000:00:00.0 to group 0
+[    1.291530] iommu: Using direct mapping for device 0000:00:00.0
+[    1.291576] iommu: Adding device 0000:00:02.0 to group 1
+[    1.291586] iommu: Using direct mapping for device 0000:00:02.0
+[    1.291628] iommu: Adding device 0000:00:04.0 to group 2
+[    1.291638] iommu: Using direct mapping for device 0000:00:04.0
+[    1.291679] iommu: Adding device 0000:00:09.0 to group 3
+[    1.291689] iommu: Using direct mapping for device 0000:00:09.0
+[    1.291729] iommu: Adding device 0000:00:11.0 to group 4
+[    1.291739] iommu: Using direct mapping for device 0000:00:11.0
+[    1.291787] iommu: Adding device 0000:00:12.0 to group 5
+[    1.291797] iommu: Using direct mapping for device 0000:00:12.0
+[    1.291810] iommu: Adding device 0000:00:12.2 to group 5
+[    1.291858] iommu: Adding device 0000:00:13.0 to group 6
+[    1.291868] iommu: Using direct mapping for device 0000:00:13.0
+[    1.291882] iommu: Adding device 0000:00:13.2 to group 6
+[    1.291921] iommu: Adding device 0000:00:14.0 to group 7
+[    1.291932] iommu: Using direct mapping for device 0000:00:14.0
+[    1.291972] iommu: Adding device 0000:00:14.2 to group 8
+[    1.291982] iommu: Using direct mapping for device 0000:00:14.2
+[    1.292034] iommu: Adding device 0000:00:14.3 to group 9
+[    1.292044] iommu: Using direct mapping for device 0000:00:14.3
+[    1.292084] iommu: Adding device 0000:00:14.4 to group 10
+[    1.292094] iommu: Using direct mapping for device 0000:00:14.4
+[    1.292134] iommu: Adding device 0000:00:14.5 to group 11
+[    1.292144] iommu: Using direct mapping for device 0000:00:14.5
+[    1.292192] iommu: Adding device 0000:00:16.0 to group 12
+[    1.292202] iommu: Using direct mapping for device 0000:00:16.0
+[    1.292216] iommu: Adding device 0000:00:16.2 to group 12
+[    1.292273] iommu: Adding device 0000:01:00.0 to group 13
+[    1.292284] iommu: Using direct mapping for device 0000:01:00.0
+[    1.292304] iommu: Adding device 0000:01:00.1 to group 13
+[    1.292345] iommu: Adding device 0000:02:00.0 to group 14
+[    1.292355] iommu: Using direct mapping for device 0000:02:00.0
+[    1.292399] iommu: Adding device 0000:03:00.0 to group 15
+[    1.292409] iommu: Using direct mapping for device 0000:03:00.0
+[    1.292417] iommu: Adding device 0000:04:06.0 to group 10
+[    1.332677] AMD-Vi: Found IOMMU at 0000:00:00.2 cap 0x40
+root@csakalinuxjo-pc:/home/csakalinuxjo/Asztal# 
+
+

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Ubuntu Tour
+GenericName=Tour
+Comment=Experience Ubuntu in your web browser
+Exec=/usr/bin/ubuntu-online-tour-checker
+Icon=ubuntu-online-tour
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Core;Documentation;Utility;
+NoDisplay=true
+NotShowIn=KDE;
+X-GNOME-Autostart-Delay=15
+X-Ubuntu-Gettext-Domain=ubuntu-online-tour
