@@ -1,0 +1,236 @@
+#!/bin/bash
+
+loadkeys hu
+setfont lat2-16 -m 8859-2
+umount -R /mnt
+
+function successmsg()
+{
+echo;
+echo "A művelet végrehajtása sikeres volt!";
+echo "Nyomj ENTER-t a továbblépéshez.";
+read;
+}
+
+function welcomemsg(){
+
+clear
+echo "Üdvözöllek az Arch Linux egyszerűsített telepítőjében!"
+echo "Készítette: ThotTee (info@thottee.eu)             v1.1"
+echo "------------------------------------------------------"
+echo
+}
+
+
+function create_partition(){
+
+echo "A következő lépésben készítsd el a használni kívánt partíciókat."
+echo "Először válaszd a DOS partíció típust, ha megkérdezi a partícionáló program."
+echo "Majd a 'Free Space'-re állva a 'NEW' opció után tudod megadni a partíciók méretét."
+echo "Fontos: Ha kész vagy, válaszd ki a 'Write' opciót!"
+echo
+echo "Megj.: GPT partíciók esetén szükség van egy 100MB-os 'BIOS grub' típusú partícióra!"
+echo
+echo "A folytatáshoz nyomj ENTER-t."
+read
+
+cfdisk
+check_partition
+}
+
+
+function check_partition(){
+
+welcomemsg
+echo "< 1. Partíciók létrehozása >"
+if (fdisk -l | grep -e "sd.[1-99]" > /dev/null);
+	then	echo "A következő létező partíciókat találtam:";
+		echo;
+		fdisk -l | grep -e "sd.[1-99]";
+		echo;
+		echo -n "Megtartod ezeket a partíciókat? (yes, no): "
+		read sel
+		case "$sel" in
+			no)
+				cfdisk
+				check_partition
+				;;
+			yes)
+				;;
+			*)
+				check_partition
+				;;
+		esac
+	else 	echo "Nem találtam felhasználható partíciót!";
+		echo;
+		create_partition;
+fi
+}
+
+function format_partition(){
+
+welcomemsg
+echo "< 2. Formázás >"
+echo "FIGYELEM: A formázott partícióról minden adat véglegesen törlődik!!"
+echo
+fdisk -l | grep -e "sd.[1-99]"
+echo
+echo "A friss telepítéshez szükség van legalább egy formázott partícióra!"
+echo "Továbblépés változtatás nélkül simán az ENTER gombbal."
+echo
+echo "Add meg szóközzel elválasztva, hogy mely partíciókat szeretnéd formázni."
+echo -n "(Példa: sda1 sda2): "
+read input
+for formpart in $input
+do
+	welcomemsg
+	echo "< 2. Formázás >"
+	echo
+	if !( mkfs.ext4 /dev/$formpart );
+		then	echo;
+			echo "A /dev/$formpart formázása sikertelen!";
+			echo "Lehetséges, hogy a partíció nem létezik vagy írásvédett.";
+			read;
+			format_partition;
+		else	successmsg;
+	fi
+done
+}
+
+
+function mount_rootpartition(){
+
+welcomemsg
+echo "< 3. Alaprendszer helyének megadása >"
+echo
+fdisk -l | grep -e "sd.[1-99]"
+echo
+echo "Add meg, hogy melyik partícióra szeretnéd az alaprendszert (/) telepíteni."
+echo -n "Csak egy partíciót adj meg! (Példa: sda1 ): "
+read input
+welcomemsg;
+echo "< 3. Alaprendszer helyének megadása >";
+echo;
+if !( mount /dev/$input /mnt );
+	then	echo;
+		echo "A /dev/$input csatolása sikertelen volt!";
+		echo "Lehetséges, hogy a megadott partíció nem létezik.";
+		read;
+		mount_rootpartition;
+	else	successmsg;
+fi
+}
+
+
+function mount_otherparts(){
+
+welcomemsg
+echo "< 4. Egyéb helyek megadása >"
+echo
+fdisk -l | grep -e "sd.[1-99]"
+echo
+echo "Add meg, hogy melyik partícióra szeretnéd telepíteni az egyéb részeket."
+echo "Ez a lehetőség opcionális. Továbblépéshez írd be: done , majd nyomj ENTER-t."
+echo
+echo "Először írd be a csatolni kívánt könyvtárat, majd a partíció jelölését."
+echo "Egyszerre csak egy könyvtár adható meg! A zárójelet ne írd be!"
+echo -n "Példák: (home sda2) (boot sda3) (var/log sda5) (swap sda4) (done): "
+read input1 input2
+welcomemsg;
+echo "< 4. Egyéb helyek megadása >"
+echo;
+case "$input1" in
+	done)
+		;;
+	swap)
+		if !( mkswap /dev/$input2 && swapon /dev/$input2 );
+			then	echo;
+				echo "Cserehely létrehozása a /dev/$input2 -n sikertelen volt!";
+				echo "Lehetséges, hogy a megadott partíció nem létezik.";
+				read;
+				mount_otherparts;
+			else	successmsg;
+				mount_otherparts;
+		fi
+		;;
+	*)
+		if !( mkdir -p /mnt/$input1 );
+			then	echo;
+				echo "A /mnt/$input1 könyvtár nem jött létre!";
+				read;
+				mount_otherparts;
+			else	if !( mount /dev/$input2 /mnt/$input1 );
+				then	echo;
+					echo "A /dev/$input2 csatolása sikertelen volt!";
+					echo "Lehetséges, hogy a megadott partíció nem létezik.";
+					read;
+					rm -R /mnt/$input1;
+					mount_otherparts;
+				else	successmsg;
+					mount_otherparts;
+				fi
+		fi
+		;;
+esac
+}
+
+
+function download_configfile(){
+
+echo;
+echo -n " - Konfigurációs fájl letöltése: "
+cd /mnt
+if !( wget thottee.eu/downloads/archconfig --quiet );
+	then	echo;
+		echo "Váratlan hiba történt a konfigurációs fájl letöltése közben!";
+		echo "Kilépéshez nyomj: ctrl+c; Újrapróbáláshoz: ENTER";
+		read;
+		rm /mnt/archconfig;
+		download_configfile;
+	else	chmod a+x archconfig;
+		echo "KÉSZ";
+fi
+}
+
+
+function install_basesystem(){
+
+welcomemsg
+echo "< 5. Alaprendszer telepítése >"
+echo
+echo "Az alaprendszer telepítésének megkezdéséhez nyomj ENTER-t."
+echo "FONTOS: legyen állandó internetkapcsolat a csomagok letöltéséhez."
+echo
+read
+mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.old
+grep "Hungary" /etc/pacman.d/mirrorlist.old -A 1 --no-group-separator > /etc/pacman.d/mirrorlist
+if ( pacstrap /mnt base base-devel );
+	then	welcomemsg;
+		echo "< 5. Alaprendszer telepítése >";
+		echo;
+		echo;
+		cat << EOF > /mnt/etc/fstab
+#
+# <file system>	<dir>	<type>	<options>	<dump>	<pass>
+# /dev/sda1
+EOF
+		echo -n " - Fstab létrehozása: ";
+		if ( genfstab -U /mnt >> /mnt/etc/fstab );
+			then	echo "KÉSZ";
+				download_configfile;
+				echo;
+				echo "A folytatáshoz írd be, majd nyomj ENTER-t: ./archconfig";
+				arch-chroot /mnt
+			else	echo "Váratlan hiba!";
+				read;
+				install_basesystem;
+		fi
+fi
+}
+
+welcomemsg
+check_partition
+format_partition
+mount_rootpartition
+mount_otherparts
+install_basesystem
