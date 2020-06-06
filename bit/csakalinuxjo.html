@@ -1,0 +1,1699 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 6.2.3.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2019-05-01T15:51:22.867067467"/>
+	<style type="text/css">
+		@page { size: 29.7cm 42cm }
+	</style>
+</head>
+<body lang="hu-HU" dir="ltr"><address style="margin-right: 27.5cm; background: transparent">
+<a href="https://www.mail-archive.com/search?l=cryptography@metzdowd.com&amp;q=subject:%22Bitcoin+P2P+e%5C-cash+paper%22&amp;o=newest" target="_blank"><font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="font-style: normal"><span style="font-weight: normal">Bitcoin
+P2P e-készpénz</span></span></font></font></font></a></address>
+<address style="margin-right: 27.5cm; background: transparent"><span style="display: inline-block; border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #dddddd; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0.05cm"><span style="font-variant: normal"><font color="#000000"><span style="text-decoration: none"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><a href="https://www.mail-archive.com/search?l=cryptography@metzdowd.com&amp;q=from:%22Satoshi+Nakamoto%22">Satoshi
+Nakamoto</span></span></span></span></font></font></span></font></span></a><span style="font-variant: normal"><font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal">
+</span></span></span></font></font></font></span><a href="https://www.mail-archive.com/search?l=cryptography@metzdowd.com&amp;q=date:20081101"><span style="font-variant: normal"><font color="#000000"><span style="text-decoration: none"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal">Szo,
+01 Nov 2008 16:16:33 -0700</span></span></span></font></font></span></font></span></a></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Egy
+új elektronikus készpénzrendszeren dolgoztam, ami teljesen megvan</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">peer-to-peer,
+nem megbízható harmadik féllel.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+papír a következő címen érhető el:</font></font></font></address>
+<address style="margin-right: 27.5cm; background: transparent"><a href="http://www.bitcoin.org/bitcoin.pdf" target="_blank"><font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="font-style: normal"><span style="font-weight: normal">http://www.bitcoin.org/bitcoin.pdf</span></span></font></font></font></a></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+főbb tulajdonságok:</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"> <font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+kettős kiadások megakadályozhatók egy peer-to-peer hálózattal.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"> <font face="Ubuntu"><font size="1" style="font-size: 8pt">Nincs
+menta vagy más megbízható fél.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"> <font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+résztvevők névtelenek lehetnek.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"> <font face="Ubuntu"><font size="1" style="font-size: 8pt">Az
+új érmék Hashcash-stílusból készülnek.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"> <font face="Ubuntu"><font size="1" style="font-size: 8pt">Az
+új érmék generálásának bizonyítéka a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000">    <font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+kettős kiadások megelőzése érdekében.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Bitcoin:
+Peer-to-Peer elektronikus készpénz-rendszer</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Absztrakt.
+Az elektronikus pénz tisztán peer-to-peer verziója lenne</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">lehetővé
+teszi az online fizetések közvetlen küldését egy másik féltől</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">anélkül,
+hogy a pénzügyi intézmény áthaladna.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+digitális aláírások a megoldás részét képezik, de a
+legfontosabbak</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">az
+előnyök elvesznek, ha egy megbízható fél még mindig
+megakadályozza</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">dupla
+kiadások. Javasoljuk a kettős kiadások megoldását</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">probléma
+a peer-to-peer hálózat használatával. A hálózati időbélyegek</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">tranzakciókat
+úgy, hogy azokat egy folyamatban lévő hash-alapú láncba \ t</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+munka igazolása, olyan rekord létrehozása, amely nélkül nem
+lehet változtatni</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+munka igazolása. A leghosszabb lánc nem csak szolgál</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">bizonyíték
+a megfigyelt események sorrendjéről, de bizonyíték arra, hogy
+jött</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+legnagyobb CPU teljesítményből. Amíg őszinte csomópontok
+irányítanak</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+hálózat legnagyobb CPU-teljesítménye, a leghosszabbak</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">láncolni
+és kitérni a támadókat. A hálózat maga is megköveteli</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">minimális
+szerkezet. Az üzeneteket a legjobb erőfeszítés alapján
+sugározzák,</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">és
+a csomópontok elhagyhatják és újra csatlakozhatnak a hálózathoz,
+és elfogadják a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+leghosszabb munkahelyi lánc bizonyítéka annak, hogy mi történt</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">elment.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Teljes
+papír:</font></font></font></address>
+<address style="margin-right: 27.5cm; background: transparent"><a href="http://www.bitcoin.org/bitcoin.pdf" target="_blank"><font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="font-style: normal"><span style="font-weight: normal">http://www.bitcoin.org/bitcoin.pdf</span></span></font></font></font></a></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Satoshi
+Nakamoto</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">--------------------------------------------------
+-------------------</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+titkosítási levelezési lista</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Leiratkozás
+a &quot;kriptográfia leiratkozásának&quot; [EMAIL PROTECTED]
+küldésével</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<table width="100%" cellpadding="2" cellspacing="0">
+	<col width="256*"/>
+
+	<tr>
+		<td width="100%" bgcolor="#eeeeee" style="background: #eeeeee" style="border: none; padding: 0cm"><address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent"><a name="1"></a>
+			<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">1
+			oldal</font></font></font></address>
+		</td>
+	</tr>
+</table>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Bitcoin:
+Peer-to-Peer elektronikus készpénz-rendszer</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Satoshi
+Nakamoto</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: light; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="2" style="font-size: 9pt"><a href="mailto:satoshin@gmx.com" target="_blank"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="font-weight: normal">satoshin@gmx.com</span></font></font></a></font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: light; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="2" style="font-size: 9pt"><a href="http://www.bitcoin.org/" target="_blank"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="font-weight: normal">www.bitcoin.org</span></font></font></a></font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Absztrakt.
+Az elektronikus készpénz tisztán peer-to-peer verziója lehetővé
+tenné az online hozzáférést</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+kifizetéseket közvetlenül az egyik féltől a másikhoz kell
+elküldeni anélkül, hogy a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">pénzintézet.
+A digitális aláírások a megoldás részét képezik, de a
+legfontosabbak</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">az
+előnyök elvesznek, ha egy megbízható harmadik fél még mindig
+megköveteli a kettős kiadások megakadályozását.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+peer-to-peer hálózat segítségével megoldást javasolunk a kettős
+kiadási problémára.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+hálózat időbélyegzi a tranzakciókat, ha azokat egy folyamatos
+láncba helyezi</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">hash-alapú
+munka-bizonyítás, amely olyan rekordot hoz létre, amelyet nem
+lehet megváltoztatni anélkül, hogy újra kell lennie</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+munka igazolása. A leghosszabb lánc nemcsak a sorrend
+bizonyítékaként szolgál</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">az
+események tanúi voltak, de bizonyították, hogy a legnagyobb
+CPU-erőből származik. Mint</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">amíg
+a CPU-teljesítmény többségét nem együttműködő csomópontok
+vezérlik</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">megtámadják
+a hálózatot, generálják a leghosszabb láncot és kitérő
+támadókat. A</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">maga
+a hálózat minimális szerkezetet igényel. Az üzeneteket a legjobb
+erőfeszítéssel sugározzák</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+csomópontok elhagyhatják és újra csatlakozhatnak a hálózathoz,
+és elfogadják a leghosszabbakat</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+munkahelyi lánc bizonyítéka annak, hogy mi történt, mialatt
+eltűntek.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">1.
+Bemutatkozás</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+kereskedelem az interneten szinte kizárólag a pénzügyi
+intézményekre támaszkodik</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">megbízható
+harmadik felek az elektronikus fizetések feldolgozására. Míg a
+rendszer elég jól működik</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+legtöbb tranzakcióban továbbra is fennáll a bizalom alapú modell
+gyengeségei.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+teljesen visszafordíthatatlan ügyletek nem igazán lehetségesek,
+mivel a pénzügyi intézmények nem</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+viták közvetítése. A közvetítés költsége növeli a
+tranzakciós költségeket, korlátozva a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">minimális
+gyakorlati tranzakcióméret és a kis alkalmi ügyletek
+lehetőségének \ t</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">és
+a nem reverzibilis kifizetések elvesztésének költségei
+szélesebbek a nem \ t</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">reverzibilis
+szolgáltatások. A megfordulás lehetőségével a bizalom
+szükségessége terjed. A kereskedőknek kell</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">ügyeljenek
+ügyfeleikre, több információt kérjenek tőlük, mint amire
+egyébként szükség lenne.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+csalások egy bizonyos százalékát elfogadhatatlannak tartják.
+Ezek a költségek és a fizetési bizonytalanságok</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">személyesen
+elkerülhető fizikai pénznem használatával, de nincs mechanizmus
+a kifizetések elvégzésére</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">kommunikációs
+csatornán keresztül, megbízható fél nélkül.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Szükség
+van egy elektronikus fizetési rendszerre, amely a bizalom helyett
+kriptográfiai bizonyítékokon alapul.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">lehetővé
+téve, hogy bármely két hajlandó fél közvetlenül megbízhasson
+egymással, megbízható megbízás nélkül</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">harmadik
+fél. Azok a tranzakciók, amelyek kiszámíthatóan nem praktikusak
+a visszavonáshoz, megvédnék az eladókat</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+csalásból és a rutin letéti mechanizmusok könnyen
+megvalósíthatók a vásárlók védelme érdekében. Ban ben</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Ezzel
+a dokumentummal megoldást javasolunk a kettős kiadás problémájára,
+egy elosztott peer-to-peer segítségével</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">időbélyegkiszolgáló,
+amely a tranzakciók időrendi sorrendjének számítási
+bizonyítékát generálja. A</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+rendszer biztonságos, amíg a becsületes csomópontok együttesen
+több CPU-teljesítményt vezérelnek, mint bármelyik</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+támadó csomópontok együttműködő csoportja.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">1</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<table width="100%" cellpadding="2" cellspacing="0">
+	<col width="256*"/>
+
+	<tr>
+		<td width="100%" bgcolor="#eeeeee" style="background: #eeeeee" style="border: none; padding: 0cm"><address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent"><a name="2"></a>
+			<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">2.
+			oldal</font></font></font></address>
+		</td>
+	</tr>
+</table>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">2.
+Tranzakciók</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Elektronikus
+érmét definiálunk digitális aláírási láncként. Minden
+tulajdonos átadja az érmét a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">majd
+az előző tranzakció hash-jének és a következő tulajdonos
+nyilvános kulcsának digitális aláírásával</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">és
+hozzáadjuk ezeket az érme végéhez. A kedvezményezett
+ellenőrizheti az aláírásokat, hogy ellenőrizze a láncot</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">tulajdonjog.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+probléma természetesen az, hogy a kedvezményezett nem tudja
+ellenőrizni, hogy az egyik tulajdonos nem dupla-költ</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">az
+érme. A közös megoldás egy megbízható központi hatóság vagy
+pénzverde bevezetése</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">tranzakció
+a kettős kiadásra. Minden egyes tranzakció után az érmét vissza
+kell vinni a pénzverdehez</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">adjon
+ki egy új érmét, és csak a pénzverdeből közvetlenül
+kibocsátott érmék kerülnek megbízásra, hogy ne kerüljenek
+kettős kiadásra.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Ennek
+a megoldásnak a problémája az, hogy a teljes pénzrendszer sorsa
+függ az</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+pénzverde működtető vállalat, minden tranzakciónak át kell
+mennie rajtuk, mint egy bank.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Szükségünk
+van arra, hogy a kedvezményezett tudja, hogy a korábbi tulajdonosok
+korábban nem írtak alá</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">tranzakciókat.
+Célunk, hogy a legkorábbi tranzakció számít, így nem érdekel</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">arról,
+hogy később megpróbálunk kétszer költeni. A tranzakció
+hiányának megerősítése csak így lehetséges</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">tudatában
+kell lennie minden tranzakciónak. A pénzverde alapú modellben a
+pénzverde tudatában volt minden tranzakciónak és</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">úgy
+döntött, hogy melyik érkezett először. Ahhoz, hogy ezt
+megbízható fél nélkül hajtsa végre, a tranzakcióknak</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nyilvánosan
+bejelentették [1], és szükségünk van egy rendszerre, amely a
+résztvevők számára, hogy megállapodjanak a történelem egyetlen
+történetében</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">sorrendben.
+A kedvezményezettnek igazolnia kell, hogy az egyes ügyletek
+időpontjában a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+csomópontok többsége egyetértett abban, hogy az első érkezett.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">3.
+Időbélyegző kiszolgáló</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Az
+általunk javasolt megoldás időbélyeg-kiszolgálóval kezdődik.
+Az időbélyegkiszolgáló az a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">egy
+tételek tömbje, amelyet időbélyegzéssel és a hash széles körű
+közzétételével, például az a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">újság
+vagy Usenet-hozzászólás [2-5]. Az időbélyegző bizonyítja, hogy
+az adatoknak létezniük kellett</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nyilvánvalóan
+az idő, hogy belépjen a hashba. Minden időbélyeg tartalmazza az
+előző időbélyeget</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">annak
+hash-ját, egy láncot alkotva, minden további időbélyegzővel
+megerősítve azokat.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">2</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Blokk</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tétel</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tétel</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">...</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Blokk</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tétel</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tétel</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">...</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tranzakció</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tulajdonos
+1</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Nyilvános
+kulcs</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tulajdonos
+0</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Aláírás</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tranzakció</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tulajdonos
+2</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Nyilvános
+kulcs</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tulajdonos
+1</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Aláírás</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Ellenőrizze</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tranzakció</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tulajdonos
+3</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Nyilvános
+kulcs</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tulajdonos
+2</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Aláírás</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Ellenőrizze</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tulajdonos
+2</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Privát
+kulcs</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tulajdonos
+1</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Privát
+kulcs</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Jel</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Jel</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tulajdonos
+3</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Privát
+kulcs</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<table width="100%" cellpadding="2" cellspacing="0">
+	<col width="256*"/>
+
+	<tr>
+		<td width="100%" bgcolor="#eeeeee" style="background: #eeeeee" style="border: none; padding: 0cm"><address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent"><a name="3"></a>
+			<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">3.
+			oldal</font></font></font></address>
+		</td>
+	</tr>
+</table>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">4.
+A munka igazolása</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Ha
+elosztott időbélyeg-kiszolgálót akarunk egymás közötti alapon
+megvalósítani, akkor ki kell használni egy</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+munkahelyi rendszer hasonló az Adam Back Hashcash-hez [6], nem pedig
+újsághoz vagy Usenethez.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+munka bizonyítéka egy olyan érték beolvasása, amely akkor
+zajlik, mint a SHA-256, a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+hash száma nulla bitekkel kezdődik. A szükséges átlagos munka
+exponenciális a számban</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nulla
+bit szükséges, és egyetlen hash végrehajtásával ellenőrizhető.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Időbélyegzőhálózatunk
+számára a munka igazolását egy nonce értékkel növeltük</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">blokkolja,
+amíg meg nem talál egy értéket, amely megadja a blokk hash-ját a
+szükséges nulla biteknek. Miután a CPU</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">erőfeszítést
+tettek annak érdekében, hogy megfeleljen a munka igazolásának, a
+blokk nem változtatható meg</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">anélkül,
+hogy a munkát ismételték volna. Ahogy a későbbi blokkokat
+láncolják utána, a blokk módosítására irányuló munka</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">magában
+foglalja az összes blokk visszahelyezését.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+munka bizonyítéka megoldja a többségi döntésben a képviselet
+meghatározásának problémáját</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">készítés.
+Ha a többség egy IP-cím-one-szavazáson alapul, akkor bárki
+félrevezette</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">képesek
+sok IP-t elosztani. A munka igazolása lényegében egy CPU-egy
+szavazat. A többség</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+döntést a leghosszabb lánc képviseli, amely a legnagyobb
+munkabiztosságot fektette be</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">benne.
+Ha a CPU teljesítmény többségét becsületes csomópontok
+vezérlik, a becsületes lánc növekedni fog</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">leggyorsabb
+és felülmúlja a versenyző láncokat. A múlt blokk módosításához
+a támadónak kell lennie</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">tegyük
+vissza a blokk és az összes blokk munkáját, és utána lépjünk
+fel, és túllépjünk</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+becsületes csomópontok munkája. Később megmutatjuk, hogy egy
+lassabb támadó felgyorsul</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+következő blokkok hozzáadásával exponenciálisan csökken.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+hardversebesség növekedésének és a csomópontok változó
+érdeklődésének növelése az idő múlásával,</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+munkahelyi nehézséget egy átlagos átlagszámot célzó mozgó
+átlag határozza meg</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">blokkok
+óránként. Ha túl gyorsan generálódnak, a nehézség nő.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">5.
+Hálózat</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+hálózat futtatásához szükséges lépések a következők:</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">1)
+Az új tranzakciókat minden csomópontra sugározzák.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">2)
+Minden csomópont új tranzakciókat gyűjt egy blokkba.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">3)
+Mindegyik csomópont azon dolgozik, hogy a blokk számára nehéz
+munkát találjon.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">4)
+Ha egy csomópont talál egy munkát igazoló dokumentumot, akkor a
+blokkot minden csomópontra továbbítja.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">5)
+A csomópontok csak akkor fogadják el a blokkot, ha minden benne
+szereplő tranzakció érvényes és még nem költött.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">6)
+A csomópontok kifejezik a blokk elfogadását azzal, hogy a
+következő blokk létrehozásával dolgoznak</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">az
+elfogadott blokk hash-jét használva, mint az előző hash.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+csomópontok mindig a leghosszabb láncot tartják a helyesnek, és
+tovább fog dolgozni</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">kiterjeszteni.
+Ha két csomópont egyidejűleg közvetíti a következő mondat
+különböző verzióit, néhány</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+csomópontok először egy vagy többet kaphatnak. Ebben az esetben
+dolgoznak azon az elsőnél, amelyet megkaptak,</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">de
+mentse el a másik ágat, ha hosszabb lesz. A nyakkendő megszakad,
+ha a következő bizonyíték</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+munkát megtalálják, és egy ág hosszabb lesz; a csomópontok,
+amelyek a másiknál dolgoztak</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">ezután
+az ág hosszabbra vált.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">3</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Blokk</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Előző
+Hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nonce</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tx</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tx</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">...</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Blokk</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Előző
+Hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nonce</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tx</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tx</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">...</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<table width="100%" cellpadding="2" cellspacing="0">
+	<col width="256*"/>
+
+	<tr>
+		<td width="100%" bgcolor="#eeeeee" style="background: #eeeeee" style="border: none; padding: 0cm"><address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent"><a name="4"></a>
+			<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">4.
+			oldal</font></font></font></address>
+		</td>
+	</tr>
+</table>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Az
+új tranzakciók nem feltétlenül kell elérniük az összes
+csomópontot. Amíg elérik</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">sok
+csomópont, hosszú ideig egy blokkba kerülnek. A blokk adások is
+tolerálják a leesést</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">üzenetek.
+Ha egy csomópont nem kap blokkot, akkor azt a következő mondat
+fogadásakor kérni fogja</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">rájön,
+hogy hiányzott egy.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">6.
+Ösztönző</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Megegyezés
+szerint a blokkban az első tranzakció egy speciális tranzakció,
+amely egy új pénzérmét hoz létre</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+blokk alkotója. Ez arra ösztönzi a csomópontokat, hogy támogassák
+a hálózatot, és biztosítja</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">az
+érmék forgalomba hozatalának kezdeti módja, mivel nincs központi
+jogosultságuk az érmék kibocsátására.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Az
+új érmék állandó állandóságának állandó hozzáadása az
+aranybányászok kiadásaihoz hasonló</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">erőforrások
+az arany forgalomba hozatalához. Esetünkben a CPU-idő és a
+villamos energia kerül felhasználásra.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Az
+ösztönzés tranzakciós díjakkal is finanszírozható. Ha egy
+tranzakció kimeneti értéke</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">kevesebb,
+mint a bemeneti értéke, a különbség olyan tranzakciós díj,
+amely hozzáadódik a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+tranzakciót tartalmazó blokk. Miután egy előre meghatározott
+számú érmét belépett</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">az
+ösztönző átmenetileg átállhat a tranzakciós díjakra, és
+teljes mértékben infláció</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">ingyenes.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Az
+ösztönző segíthet ösztönözni a csomópontok becsületességét.
+Ha egy kapzsi támadó képes</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">összegyűjtsön
+több CPU-teljesítményt, mint az összes becsületes csomópont,
+azt kell választania, hogy használja</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">az
+embereket azáltal, hogy ellopja a kifizetéseit, vagy új érmék
+előállítására használhatja. Ő kell</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+jövedelmezőbbnek tűnik a szabályok betartása, olyan szabályok,
+amelyek több új érmével kedveznek neki, mint</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">mindenki
+más együtt, mint hogy aláássa a rendszert és a saját vagyonának
+érvényességét.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">7.
+A lemezterület visszaszerzése</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Amint
+az érme legutóbbi tranzakciója elég sok blokk alatt van
+eltemetve, az elköltött tranzakciók előtt</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">eldobható
+a lemezterület mentése. Ennek megkönnyítése érdekében a blokk
+hash megszakítása nélkül</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+tranzakciók Merkle Tree-ben [7] [2] [5] vannak, csak a gyökér
+szerepel a blokk hashjában.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+régi tömböket ezután tömöríthetjük a fa ágainak
+eltávolításával. A belső hash csinál</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nem
+kell tárolni.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Egy
+tranzakció nélküli blokkfejléc körülbelül 80 bájt lenne. Ha
+feltételezzük, hogy a blokkok</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">10
+percenként generált, 80 bájt * 6 * 24 * 365 = 4,2 MB / év.
+Számítógépes rendszerekkel</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">jellemzően
+2 GB RAM-mal értékesít 2008-tól, és Moore törvénye a jelenlegi
+növekedést előre jelzi</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">1,2
+GB / év, a tárolás nem lehet probléma még akkor is, ha a
+blokkfejléceket be kell tartani</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">memória.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">4</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Blokk</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Blokk</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Blokkfejléc
+(blokkolás)</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Előző
+Hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nonce</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash01</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash0</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash1</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash2</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash3</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash23</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Gyökér
+Hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash01</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash2</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tx3</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash23</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Blokkfejléc
+(blokkolás)</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Gyökér
+Hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+Merkle-fában megtört tranzakciók</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tx0-2
+metszése után a blokkból</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Előző
+Hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nonce</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash3</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tx0</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tx1</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">tx2</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tx3</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<table width="100%" cellpadding="2" cellspacing="0">
+	<col width="256*"/>
+
+	<tr>
+		<td width="100%" bgcolor="#eeeeee" style="background: #eeeeee" style="border: none; padding: 0cm"><address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent"><a name="5"></a>
+			<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">5.
+			oldal</font></font></font></address>
+		</td>
+	</tr>
+</table>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">8.
+Egyszerűsített fizetési ellenőrzés</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+kifizetések teljes hálózati csomópont futtatása nélkül
+ellenőrizhetők. A felhasználónak csak meg kell tartania</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+legrégebbi munka lánc blokkfejlécének másolata, amelyet
+lekérdezéssel kaphat</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">hálózati
+csomópontok, amíg meg nem győződik róla, hogy rendelkezik a
+leghosszabb lánccal, és megkapja a Merkle-ágat</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+tranzakció összekapcsolása a blokkmal, amelyre időbélyegzett.
+Nem tudja ellenőrizni a tranzakciót</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">magát
+a láncban lévő helyhez kötve, láthatja, hogy egy hálózati
+csomópont elfogadta,</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">és
+a hozzáadott blokkokat, amelyek megerősítik, hogy a hálózat
+elfogadta.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Mint
+ilyen, az ellenőrzés megbízható, amíg a becsületes csomópontok
+irányítják a hálózatot, de több</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">sérülékeny,
+ha a hálózatot támadó támadja. Míg a hálózati csomópontok
+ellenőrizhetik</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">tranzakciókat,
+az egyszerűsített módszert egy támadó készítette</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">mindaddig,
+amíg a támadó továbbra is leküzdheti a hálózatot. Egy
+stratégia</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">ez
+ellen védeni kell a hálózati csomópontok figyelmeztetéseit, ha
+érvénytelenítenek</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">blokkolja,
+a felhasználó szoftvereit, hogy töltse le a teljes blokkot és a
+figyelmeztetett tranzakciókat</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">megerősítse
+az ellentmondást. A gyakori kifizetéseket kapó vállalkozások
+valószínűleg még mindig szeretnék</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">futtassa
+saját csomópontjaikat a függetlenebb biztonság és a gyorsabb
+ellenőrzés érdekében.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">9.
+Érték kombinálása és felosztása</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Bár
+az érméket egyénileg lehet kezelni, nehézkes lenne egy</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">külön
+tranzakció minden egyes centre egy transzferben. Az érték
+megosztása és egyesítése</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+tranzakciók több bemenetet és kimenetet tartalmaznak. Általában
+egyetlen bemenet lesz</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">egy
+nagyobb korábbi tranzakcióból vagy több bemenetből, amelyek
+kisebb összegeket kombinálnak, és legfeljebb kettőt</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">kimenetek:
+az egyik a fizetésre, és az egyik, ha van ilyen, a visszaküldés a
+küldőnek.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Meg
+kell jegyezni, hogy a fan-out, ahol a tranzakció több tranzakciótól
+függ, és azok</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+tranzakciók többtől függenek, itt nem jelent problémát. Soha
+nem kell kivonni a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+tranzakció történetének teljes önálló példánya.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">5</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tranzakció</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Ban
+ben</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">...</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Ban
+ben</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Ki</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">...</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash01</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash2</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash3</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hash23</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Blokkfejléc</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Merkle
+Root</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Előző
+Hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nonce</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Blokkfejléc</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Merkle
+Root</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Előző
+Hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nonce</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Blokkfejléc</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Merkle
+Root</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Előző
+Hash</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nonce</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Merkle
+Branch a Tx3 számára</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+leghosszabb munka-lánc</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Tx3</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<table width="100%" cellpadding="2" cellspacing="0">
+	<col width="256*"/>
+
+	<tr>
+		<td width="100%" bgcolor="#eeeeee" style="background: #eeeeee" style="border: none; padding: 0cm"><address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent"><a name="6"></a>
+			<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">6.
+			oldal</font></font></font></address>
+		</td>
+	</tr>
+</table>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">10.
+Adatvédelem</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+hagyományos banki modell az adatvédelem korlátozásával
+korlátozza a magánélet védelmét</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">az
+érintett felek és a megbízható harmadik fél között. A
+tranzakciók nyilvános közzétételének szükségessége</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">kizárja
+ezt a módszert, de a magánéletet továbbra is fenntarthatjuk az
+információáramlás megszakításával</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">egy
+másik hely: a nyilvános kulcsok névtelen megtartásával. A
+nyilvánosság láthatja, hogy valaki küld</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">valaki
+másnak, de a tranzakciót senkivel nem összekötő információ
+nélkül. Ez</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">hasonlóan
+a tőzsdék által kibocsátott információk szintjéhez, ahol az
+idő és a méret</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">az
+egyéni kereskedelem, a „szalag” nyilvánosságra kerül, de
+anélkül, hogy elmondaná, hogy ki a felek.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">További
+tűzfalként minden egyes tranzakcióhoz új kulcspárot kell
+használni, hogy megtartsák azokat</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">egy
+közös tulajdonoshoz. Néhány összekapcsolás elkerülhetetlen a
+több bemenettel</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">tranzakciók,
+amelyek szükségszerűen feltárják, hogy inputja ugyanazon
+tulajdonos tulajdonában volt. A kockázat</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">az,
+hogy ha egy kulcs tulajdonosát feltárjuk, akkor a kapcsolás más
+tranzakciókat is felfedhet</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">ugyanaz
+a tulajdonos.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">11.
+Számítások</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Úgy
+véljük, hogy egy támadó forgatókönyve gyorsabb, mint a
+becsületes</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">lánc.
+Még ha ez megtörténik, ez nem dobja a rendszert önkényes
+változásoknak, például</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">mint
+a vékony levegőből származó értékek létrehozása, vagy olyan
+pénz bevétele, amelyek soha nem tartoztak a támadóhoz. A
+csomópontok</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nem
+fog érvénytelen tranzakciót elfogadni fizetésként, és az
+őszinte csomópontok soha nem fogják elfogadni a blokkot</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">azokat.
+A támadó csak akkor próbálja megváltoztatni az egyik saját
+tranzakcióját, hogy visszavegye</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">pénzt,
+amit a közelmúltban költött.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+becsületes lánc és a támadó lánc közötti verseny
+binomiálisként jellemezhető</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Véletlen
+séta. A sikertörténet az a becsületes lánc, amelyet egy blokk
+meghosszabbít</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">+1,
+és a meghibásodás eseménye a támadó láncának egy blokkkal
+történő meghosszabbítása, ami csökkenti a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">-1.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Az
+a valószínűség, hogy egy támadó egy adott hiányról
+felzárkózik, hasonló a szerencsejátékosokhoz</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Romos
+probléma. Tegyük fel, hogy a korlátlan hitelminősítő
+szerencsejátékos hiánya és potenciálisan egy</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">végtelen
+számú próbálkozás, hogy megpróbálja elérni a túlsúlyt.
+Kiszámíthatjuk, hogy valaha milyen valószínűséggel</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">eléri
+a túlsúlyt, vagy hogy a támadó valaha is elkapja a becsületes
+láncot [8]:</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">p
+= valószínűség, hogy egy becsületes csomópont megtalálja a
+következő blokkot</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+= a valószínűség, hogy a támadó megtalálja a következő
+blokkot</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+z = valószínűsége, hogy a támadó valaha is eléri a z blokkokat</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+z = { 1</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">ha
+p ≤ q</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"> <font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+/ p </font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Z</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">ha
+p  q }</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">6</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">identitások</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">tranzakciók</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Megbízható</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Harmadik
+fél</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Partner</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Nyilvános</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">identitások</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">tranzakciók</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Nyilvános</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Új
+adatvédelmi modell</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Hagyományos
+adatvédelmi modell</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<table width="100%" cellpadding="2" cellspacing="0">
+	<col width="256*"/>
+
+	<tr>
+		<td width="100%" bgcolor="#eeeeee" style="background: #eeeeee" style="border: none; padding: 0cm"><address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent"><a name="7"></a>
+			<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">7.
+			oldal</font></font></font></address>
+		</td>
+	</tr>
+</table>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Feltételezve,
+hogy a p&gt; q , a valószínűség exponenciálisan csökken, mint a
+blokkok száma</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+támadónak fel kell lépnie a növekedéssel. Az esélye ellen, ha
+nem szerencsés</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">korántsék
+előre, az esélye eltűnően kicsi, ahogy elmarad.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Most
+azt vizsgáljuk, hogy az új tranzakció címzettjének mennyi ideig
+kell várnia, mielőtt megérkezik</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">kellően
+biztos, hogy a feladó nem tudja megváltoztatni a tranzakciót.
+Feltételezzük, hogy a feladó támadó</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">aki
+azt akarja, hogy a címzett úgy gondolja, hogy egy ideig fizetett
+neki, majd kapcsolja vissza, hogy visszatérjen</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">egy
+idő elteltével. A vevőt figyelmezteti, ha ez megtörténik, de a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+feladó reméli, hogy túl késő lesz.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+vevő új kulcspárot hoz létre, és a nyilvános kulcsot röviddel
+azután adja meg</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">aláírás.
+Ez megakadályozza, hogy a feladó előzőleg előkészítse a
+blokkokat</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">folyamatosan,
+amíg elég szerencséje van ahhoz, hogy elég messzire menjen előre,
+majd végrehajtja a tranzakciót</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Abban
+a pillanatban. A tranzakció elküldése után a tisztességtelen
+feladó titkosan kezdi meg munkáját a</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">párhuzamos
+láncot, amely a tranzakció alternatív változatát tartalmazza.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+címzett vár, amíg a tranzakció hozzá lett adva egy blokkhoz, és
+z blokkok lettek</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">összekapcsolva.
+Nem tudja a támadó által elért haladás pontos összegét</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">feltételezve,
+hogy a becsületes blokkok a blokkra számított átlagos várható
+időt vették figyelembe, a támadó potenciálja</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+haladás várható értéke Poisson-eloszlás lesz:</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"> <font face="Ubuntu"><font size="1" style="font-size: 8pt">=
+z</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">p</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Annak
+érdekében, hogy a támadó még mindig felismerje a valószínűséget,
+megszorozzuk a Poisson-sűrűséget</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">minden
+olyan előrehaladás mértékét, amelyet a valószínűséggel
+tudott volna elérni, ha fel tud lépni ebből a pontból:</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Σ</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">k
+= 0</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000">∞</font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">k
+e −</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">k
+!</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000">⋅ <font face="Ubuntu"><font size="1" style="font-size: 8pt">{
+ q / p   z - k </font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">ha
+k ≤ z</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">1</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">ha
+k  z }</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+forgalmazás végtelen farka összegzésének elkerülése érdekében
+át kell alakítani ...</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">1−
+∑</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">k
+= 0</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Z</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"> <font face="Ubuntu"><font size="1" style="font-size: 8pt">k
+e −</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">k
+!</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"> <font face="Ubuntu"><font size="1" style="font-size: 8pt">1
+−  q / p   z - k  </font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Konvertálás
+C-kódra ...</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">#include
+&lt;math.h&gt;</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">kettős
+AttackerSuccessProbability (dupla q, int z)</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">{</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">dupla
+p = 1,0 - q;</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">kettős
+lambda = z * (q / p);</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">kettős
+összeg = 1,0;</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">int
+i, k;</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">(k
+= 0; k &lt;= z; k ++)</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">{</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">kettős
+poisson = exp (-lambda);</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">(i
+= 1; i &lt;= k; i ++) esetén</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">poisson
+* = lambda / i;</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">sum
+- = poisson * (1 - pow (q / p, z - k));</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">}</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">visszatérési
+összeg;</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">}</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">7</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<table width="100%" cellpadding="2" cellspacing="0">
+	<col width="256*"/>
+
+	<tr>
+		<td width="100%" bgcolor="#eeeeee" style="background: #eeeeee" style="border: none; padding: 0cm"><address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent"><a name="8"></a>
+			<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">8.
+			oldal</font></font></font></address>
+		</td>
+	</tr>
+</table>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Néhány
+eredmény futtatásával a valószínűség csökkenése
+exponenciálisan z.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+= 0,1</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 0 P = 1,0000000</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 1 P = 0,2045873</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 2 P = 0,0509779</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 3 p = 0,0131722</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 4P = 0,0034552</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 5 P = 0,0009137</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 6 P = 0,0002428</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 7 P = 0,0000647</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 8 P = 0,0000173</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 9 P = 0,0000046</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 10 P = 0,0000012</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+= 0,3</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 0 P = 1,0000000</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 5 P = 0,1773523</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 10 P = 0,0416605</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 15 P = 0,0101008</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 20 P = 0,0024804</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 25 P = 0,0006132</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 30 P = 0,0001522</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 35 P = 0,0000379</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 40 P = 0,0000095</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 45 P = 0,0000024</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">z
+= 50 P = 0,0000006</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">0,1%
+-nál kisebb P megoldása ...</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">P
+&lt;0,001</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+= 0,10 z = 5</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+= 0,15 z = 8</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+= 0,20 z = 11</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+= 0,25 z = 15</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+= 0,30 z = 24</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+= 0,35 z = 41</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+= 0,40 z = 89</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">q
+= 0,45 z = 340</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">12.
+Következtetés</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Az
+elektronikus tranzakciók rendszerét bizalomra támaszkodva
+javasoljuk. Kezdtünk</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+digitális aláírásokból készült érmék szokásos kerete, amely
+erős ellenőrzést biztosít</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+kettős kiadások megakadályozásának módja nélkül. Ennek
+megoldásához mi</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">egy
+peer-to-peer hálózatot javasolt, amely a tranzakciók nyilvános
+előzményeinek rögzítésére szolgál</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">hogy
+a támadó gyorsan kiszámíthatóvá válik, ha becsületes
+csomópontok változnak</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">a
+CPU többségének vezérlése. A hálózat strukturálatlan
+egyszerűségében robusztus. csomópontok</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">mindent
+egyszerre, kevés koordinációval. Nem kell azonosítani őket,
+mivel az üzenetek</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">nem
+vezetnek egy adott helyre, és csak a legjobb erőfeszítéssel kell
+ellátni. Csomópontok</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">hagyja
+el és csatlakozzon újra a hálózathoz, és elfogadja a munkahelyi
+láncot bizonyítékként</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">amikor
+elmentek. A CPU-teljesítményükkel szavaznak, és elfogadják</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">érvényes
+blokkok azáltal, hogy megpróbálják kiterjeszteni őket és
+elutasítják az érvénytelen blokkokat, ha megtagadják a munkát</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">őket.
+Ezzel a konszenzusmódszerrel bármely szükséges szabály és
+ösztönző érvényesíthető.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">8</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<table width="100%" cellpadding="2" cellspacing="0">
+	<col width="256*"/>
+
+	<tr>
+		<td width="100%" bgcolor="#eeeeee" style="background: #eeeeee" style="border: none; padding: 0cm"><address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent"><a name="9"></a>
+			<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">9.
+			oldal</font></font></font></address>
+		</td>
+	</tr>
+</table>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Irodalom</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: light; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="2" style="font-size: 9pt"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="font-weight: normal">[1]
+W. Dai, &quot;b-pénz&quot;, <a href="http://www.weidai.com/bmoney.txt" target="_blank">http://www.weidai.com/bmoney.txt</a>,
+1998.</span></font></font></font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">[2]
+H. Massias, XS Avila és J.-J. Quisquater, &quot;Biztonságos
+időbélyegző szolgáltatás tervezése minimális</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">bizalmi
+követelmények, &quot;A Benelux államok információs elméletének
+20. szimpóziumában , 1999 májusában.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">[3]
+S. Haber, WS Stornetta, &quot;Digitális dokumentum időbélyegzése&quot;,
+Journal of Cryptology , 3. kötet, nem</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">2,
+99-111. Old., 1991.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">[4]
+D. Bayer, S. Haber, WS Stornetta, &quot;A digitális időbélyegzés
+hatékonyságának és megbízhatóságának javítása&quot;,</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+II . Sorrendben : A kommunikáció, a biztonság és a
+számítástechnika módszerei , 329-334. Oldal, 1993.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">[5]
+S. Haber, WS Stornetta, &quot;Bitstringek biztonságos neve&quot; , a
+negyedik ACM-konferencia folyamataiban</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">A
+számítógépes és kommunikációs biztonságról , 28-35. oldal,
+1997. április.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">[6]
+A. Vissza, &quot;Hashcash - egy szolgáltatásmegtagadási
+intézkedés&quot;</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: light; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="2" style="font-size: 9pt"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="font-weight: normal"><a href="http://www.hashcash.org/papers/hashcash.pdf" target="_blank">http://www.hashcash.org/papers/hashcash.pdf</a>,
+2002.</span></font></font></font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">[7]
+RC Merkle, &quot;Nyilvános kulcsú titkosítási rendszerek
+protokolljai&quot;, Proc. 1980 - a biztonságról szóló szimpózium</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Adatvédelem
+, IEEE Computer Society, 122-133. Oldal, 1980. április.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">[8]
+W. Feller, &quot;Bevezetés a valószínűségi elméletbe és
+alkalmazásaiba&quot;, 1957.</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">9</font></font></font></address>
+<address style="margin-right: 27.5cm; font-style: normal; font-weight: normal; background: transparent">
+<br/>
+
+</address>
+<p style="font-style: normal; font-weight: normal"><br/>
+<br/>
+
+</p>
+<p style="font-style: normal; font-weight: normal"><font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt">Véletlen
+karakter generátorok:</font></font></font></p>
+<p><a href="http://demo.btamas.hu/index.php?demoName=karakter_gen" target="_blank"><font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="font-style: normal"><span style="font-weight: normal">http://demo.btamas.hu/index.php?demoName=karakter_gen
+</span></span></font></font></font></a>
+</p>
+<p><a href="http://tools.coldline.hu/randompass.php" target="_blank"><font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="font-style: normal"><span style="font-weight: normal">http://tools.coldline.hu/randompass.php
+</span></span></font></font></font></a>
+</p>
+<p><a href="https://www.bitaddress.org/" target="_blank"><font color="#000000"><font face="Ubuntu"><font size="1" style="font-size: 8pt"><span style="font-style: normal"><span style="font-weight: normal">https://www.bitaddress.org/
+</span></span></font></font></font></a>
+</p>
+<p style="font-style: normal; font-weight: normal"><br/>
+<br/>
+
+</p>
+<p style="font-style: normal; font-weight: normal"><br/>
+<br/>
+
+</p>
+</body>
+</html>
