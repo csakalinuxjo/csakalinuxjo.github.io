@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<style type="text/css">
+:root {
+  font-family: sans-serif;
+}
+img {
+  border: 0;
+}
+th {
+  text-align: start;
+  white-space: nowrap;
+}
+th > a {
+  color: inherit;
+}
+table[order] > thead > tr > th {
+  cursor: pointer;
+}
+table[order] > thead > tr > th::after {
+  display: none;
+  width: .8em;
+  margin-inline-end: -.8em;
+  text-align: end;
+}
+table[order="asc"] > thead > tr > th::after {
+  content: "\2193"; /* DOWNWARDS ARROW (U+2193) */
+}
+table[order="desc"] > thead > tr > th::after {
+  content: "\2191"; /* UPWARDS ARROW (U+2191) */
+}
+table[order][order-by="0"] > thead > tr > th:first-child > a ,
+table[order][order-by="1"] > thead > tr > th:first-child + th > a ,
+table[order][order-by="2"] > thead > tr > th:first-child + th + th > a {
+  text-decoration: underline;
+}
+table[order][order-by="0"] > thead > tr > th:first-child::after ,
+table[order][order-by="1"] > thead > tr > th:first-child + th::after ,
+table[order][order-by="2"] > thead > tr > th:first-child + th + th::after {
+  display: inline-block;
+}
+table.remove-hidden > tbody > tr.hidden-object {
+  display: none;
+}
+td {
+  white-space: nowrap;
+}
+table.ellipsis {
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 0;
+}
+table.ellipsis > tbody > tr > td {
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* name */
+/* name */
+th:first-child {
+  padding-inline-end: 2em;
+}
+/* size */
+th:first-child + th {
+  padding-inline-end: 1em;
+}
+td:first-child + td {
+  text-align: end;
+  padding-inline-end: 1em;
+}
+/* date */
+td:first-child + td + td {
+  padding-inline-start: 1em;
+  padding-inline-end: .5em;
+}
+/* time */
+td:first-child + td + td + td {
+  padding-inline-start: .5em;
+}
+.symlink {
+  font-style: italic;
+}
+.dir ,
+.symlink ,
+.file {
+  margin-inline-start: 20px;
+}
+.dir::before ,
+.file > img {
+  margin-inline-end: 4px;
+  margin-inline-start: -20px;
+  max-width: 16px;
+  max-height: 16px;
+  vertical-align: middle;
+}
+.dir::before {
+  content: url(resource://gre/res/html/folder.png);
+}
+</style>
+<link rel="stylesheet" media="screen, projection" type="text/css" href="csakalinuxjo_elemei/dirListing.css">
+<script type="application/javascript">
+'use strict';
+var gTable, gOrderBy, gTBody, gRows, gUI_showHidden;
+document.addEventListener("DOMContentLoaded", function() {
+  gTable = document.getElementsByTagName("table")[0];
+  gTBody = gTable.tBodies[0];
+  if (gTBody.rows.length < 2)
+    return;
+  gUI_showHidden = document.getElementById("UI_showHidden");
+  var headCells = gTable.tHead.rows[0].cells,
+      hiddenObjects = false;
+  function rowAction(i) {
+    return function(event) {
+      event.preventDefault();
+      orderBy(i);
+    }
+  }
+  for (var i = headCells.length - 1; i >= 0; i--) {
+    var anchor = document.createElement("a");
+    anchor.href = "";
+    anchor.appendChild(headCells[i].firstChild);
+    headCells[i].appendChild(anchor);
+    headCells[i].addEventListener("click", rowAction(i), true);
+  }
+  if (gUI_showHidden) {
+    gRows = Array.slice(gTBody.rows);
+    hiddenObjects = gRows.some(row => row.className == "hidden-object");
+  }
+  gTable.setAttribute("order", "");
+  if (hiddenObjects) {
+    gUI_showHidden.style.display = "block";
+    updateHidden();
+  }
+}, "false");
+function compareRows(rowA, rowB) {
+  var a = rowA.cells[gOrderBy].getAttribute("sortable-data") || "";
+  var b = rowB.cells[gOrderBy].getAttribute("sortable-data") || "";
+  var intA = +a;
+  var intB = +b;
+  if (a == intA && b == intB) {
+    a = intA;
+    b = intB;
+  } else {
+    a = a.toLowerCase();
+    b = b.toLowerCase();
+  }
+  if (a < b)
+    return -1;
+  if (a > b)
+    return 1;
+  return 0;
+}
+function orderBy(column) {
+  if (!gRows)
+    gRows = Array.slice(gTBody.rows);
+  var order;
+  if (gOrderBy == column) {
+    order = gTable.getAttribute("order") == "asc" ? "desc" : "asc";
+  } else {
+    order = "asc";
+    gOrderBy = column;
+    gTable.setAttribute("order-by", column);
+    gRows.sort(compareRows);
+  }
+  gTable.removeChild(gTBody);
+  gTable.setAttribute("order", order);
+  if (order == "asc")
+    for (var i = 0; i < gRows.length; i++)
+      gTBody.appendChild(gRows[i]);
+  else
+    for (var i = gRows.length - 1; i >= 0; i--)
+      gTBody.appendChild(gRows[i]);
+  gTable.appendChild(gTBody);
+}
+function updateHidden() {
+  gTable.className = gUI_showHidden.getElementsByTagName("input")[0].checked ?
+                     "" :
+                     "remove-hidden";
+}
+</script>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAjFJREFUeNqsU8uOElEQPffR3XQ3ONASdBJCSBxHos5%2B3Bg3rvkCv8PElS78gPkO%2FATjQoUdO2ftrJiRh6aneTb9sOpC4weMN6lcuFV16pxDIfI8x12OYIDhcPiu2Wx%2B%2FHF5CW1Z6Jyegt%2FTNEWSJIjjGFEUIQxDrFYrWFSzXC4%2FdLvd95pRKpXKy%2BpRFZ7nwaWo1%2BsGnQG2260BKJfLKJVKGI1GEEJw7ateryd0v993W63WEwjgxfn5obGYzgCbzcaEbdsIggDj8Riu6z6iUk9SYZMSx8W0LMsM%2FSKK75xnJlIq80anQXdbEp0OhcPJ0eiaJnGRMEyyPDsAKKUM9clkYoDo3SZJzzSdp0VSKYmfV1co%2Bz580kw5KDIM8RbRfEnUf1HzxtQyMAGcaGruTKczMzEIaqhKifV6jd%2BzGQQB5llunF%2FM52BizC2K5sYPYvZcu653tjOM9O93wnYc08gmkgg4VAxixfqFUJT36AYBZGd6PJkFCZnnlBxMp38gqIgLpZB0y4Nph18lyWh5FFbrOSxbl3V4G%2BVB7T4ajYYxTyuLtO%2BCvWGgJE1Mc7JNsJEhvgw%2FQV4fo%2F24nbEsX2u1d5sVyn8sJO0ZAQiIYnFh%2BxrfLz%2Fj29cBS%2FO14zg3i8XigW3ZkErDtmKoeM%2BAJGRMnXeEPGKf0nCD1ydvkDzU9Jbc6OpR7WIw6L8lQ%2B4pQ1%2FlPF0RGM9Ns91Wmptk0GfB4EJkt77vXYj%2F8m%2B8y%2FkrwABHbz2H9V68DQAAAABJRU5ErkJggg%3D%3D">
+<title> tartalma</title>
+<!-- base href="" -->
+<style type="text/css" id="igtranslator-color"></style></head>
+<body dir="ltr">
+<h1> tartalma</h1>
+<p id="UI_goUp"><a class="up" href="file:///home/csakalinuxjo/ftp.x3.hu/csakalinuxjo/public_html/linux/etc/apt/">Ugrás a szülőkönyvtárba</a></p>
+<p id="UI_showHidden" style="display:none"><label><input checked="checked" onchange="updateHidden()" type="checkbox">Rejtett objektumok megjelenítése</label></p>
+<table order="">
+ <thead>
+  <tr>
+   <th><a href="">Név</a></th>
+   <th><a href="">Méret</a></th>
+   <th colspan="2"><a href="">Utoljára módosítva</a></th>
+  </tr>
+ </thead>
+ <tbody>
+<tr>
+ <td sortable-data="2anonbeat_ubuntu_guayadeque.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="anonbeat_ubuntu_guayadeque.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">anonbeat_ubuntu_guayadeque.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="366">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2apandada1_ubuntu_brightness-controller.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="apandada1_ubuntu_brightness-controller.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">apandada1_ubuntu_brightness-controller.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="372">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2brennanhm_ubuntu_linuxmint.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="brennanhm_ubuntu_linuxmint.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">brennanhm_ubuntu_linuxmint.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="1132">2 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2catfish-search_ubuntu_ppa.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="catfish-search_ubuntu_ppa.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">catfish-search_ubuntu_ppa.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="372">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2claws-mail_ubuntu_ppa.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="claws-mail_ubuntu_ppa.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">claws-mail_ubuntu_ppa.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="437">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2debian-archive-jessie-automatic.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="debian-archive-jessie-automatic.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">debian-archive-jessie-automatic.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="5138">6 KB</td>
+ <td sortable-data="1417389097000000">2014-12-01</td>
+ <td>00:11:37</td>
+</tr><tr>
+ <td sortable-data="2debian-archive-jessie-security-automatic.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="debian-archive-jessie-security-automatic.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">debian-archive-jessie-security-automatic.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="5147">6 KB</td>
+ <td sortable-data="1417389097000000">2014-12-01</td>
+ <td>00:11:37</td>
+</tr><tr>
+ <td sortable-data="2debian-archive-jessie-stable.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="debian-archive-jessie-stable.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">debian-archive-jessie-stable.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="2775">3 KB</td>
+ <td sortable-data="1417389097000000">2014-12-01</td>
+ <td>00:11:37</td>
+</tr><tr>
+ <td sortable-data="2debian-archive-squeeze-automatic.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="debian-archive-squeeze-automatic.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">debian-archive-squeeze-automatic.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="4084">4 KB</td>
+ <td sortable-data="1417389097000000">2014-12-01</td>
+ <td>00:11:37</td>
+</tr><tr>
+ <td sortable-data="2debian-archive-squeeze-stable.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="debian-archive-squeeze-stable.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">debian-archive-squeeze-stable.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="2853">3 KB</td>
+ <td sortable-data="1417389097000000">2014-12-01</td>
+ <td>00:11:37</td>
+</tr><tr>
+ <td sortable-data="2debian-archive-wheezy-automatic.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="debian-archive-wheezy-automatic.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">debian-archive-wheezy-automatic.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="3780">4 KB</td>
+ <td sortable-data="1417389097000000">2014-12-01</td>
+ <td>00:11:37</td>
+</tr><tr>
+ <td sortable-data="2debian-archive-wheezy-stable.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="debian-archive-wheezy-stable.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">debian-archive-wheezy-stable.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="2851">3 KB</td>
+ <td sortable-data="1417389097000000">2014-12-01</td>
+ <td>00:11:37</td>
+</tr><tr>
+ <td sortable-data="2debian-ports-archive-2016.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="debian-ports-archive-2016.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">debian-ports-archive-2016.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="1735">2 KB</td>
+ <td sortable-data="1454368783000000">2016-02-02</td>
+ <td>00:19:43</td>
+</tr><tr>
+ <td sortable-data="2hda-me_ubuntu_qt5ct.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="hda-me_ubuntu_qt5ct.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">hda-me_ubuntu_qt5ct.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="1136">2 KB</td>
+ <td sortable-data="1467508749000000">2016-07-03</td>
+ <td>03:19:09</td>
+</tr><tr>
+ <td sortable-data="2hugin_ubuntu_next.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="hugin_ubuntu_next.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">hugin_ubuntu_next.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="362">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2index.html"><table class="ellipsis"><tbody><tr><td><a class="file" href="index.html"><img src="csakalinuxjo_elemei/a" alt="Fájl:">index.html</a></td></tr></tbody></table></td>
+ <td sortable-data="424">1 KB</td>
+ <td sortable-data="1444255200000000">2015-10-08</td>
+ <td>00:00:00</td>
+</tr><tr>
+ <td sortable-data="2kubuntu-ppa_ubuntu_backports.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="kubuntu-ppa_ubuntu_backports.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">kubuntu-ppa_ubuntu_backports.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="1005">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2landronimirc_ubuntu_skippy-xd-daily.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="landronimirc_ubuntu_skippy-xd-daily.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">landronimirc_ubuntu_skippy-xd-daily.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="365">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2libreoffice_ubuntu_ppa.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="libreoffice_ubuntu_ppa.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">libreoffice_ubuntu_ppa.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="1340">2 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2linphone_ubuntu_release.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="linphone_ubuntu_release.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">linphone_ubuntu_release.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="366">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2linrunner_ubuntu_tlp.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="linrunner_ubuntu_tlp.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">linrunner_ubuntu_tlp.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="360">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2lxle_ubuntu_stable.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="lxle_ubuntu_stable.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">lxle_ubuntu_stable.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="363">1 KB</td>
+ <td sortable-data="1468207395000000">2016-07-11</td>
+ <td>05:23:15</td>
+</tr><tr>
+ <td sortable-data="2maarten-baert_ubuntu_simplescreenrecorder.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="maarten-baert_ubuntu_simplescreenrecorder.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">maarten-baert_ubuntu_simplescreenrecorder.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="366">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2mkusb_ubuntu_ppa.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="mkusb_ubuntu_ppa.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">mkusb_ubuntu_ppa.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="1128">2 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2nemh_ubuntu_systemback.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="nemh_ubuntu_systemback.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">nemh_ubuntu_systemback.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="521">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2neurodebian-archive-keyring.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="neurodebian-archive-keyring.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">neurodebian-archive-keyring.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="1511">2 KB</td>
+ <td sortable-data="1436548350000000">2015-07-10</td>
+ <td>19:12:30</td>
+</tr><tr>
+ <td sortable-data="2nilarimogard_ubuntu_webupd8.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="nilarimogard_ubuntu_webupd8.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">nilarimogard_ubuntu_webupd8.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="350">1 KB</td>
+ <td sortable-data="1467618167000000">2016-07-04</td>
+ <td>09:42:47</td>
+</tr><tr>
+ <td sortable-data="2noobslab_ubuntu_icons.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="noobslab_ubuntu_icons.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">noobslab_ubuntu_icons.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="652">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2noobslab_ubuntu_themes.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="noobslab_ubuntu_themes.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">noobslab_ubuntu_themes.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="652">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2nowrep_ubuntu_qupzilla.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="nowrep_ubuntu_qupzilla.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">nowrep_ubuntu_qupzilla.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="364">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2otto-kesselgulasch_ubuntu_gimp.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="otto-kesselgulasch_ubuntu_gimp.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">otto-kesselgulasch_ubuntu_gimp.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="643">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2peppermintos_ubuntu_p7-release.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="peppermintos_ubuntu_p7-release.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">peppermintos_ubuntu_p7-release.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="366">1 KB</td>
+ <td sortable-data="1466667225000000">2016-06-23</td>
+ <td>09:33:45</td>
+</tr><tr>
+ <td sortable-data="2pithos_ubuntu_ppa.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="pithos_ubuntu_ppa.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">pithos_ubuntu_ppa.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="370">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2pkg-mozilla-archive-keyring.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="pkg-mozilla-archive-keyring.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">pkg-mozilla-archive-keyring.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="1813">2 KB</td>
+ <td sortable-data="1352913043000000">2012-11-14</td>
+ <td>18:10:43</td>
+</tr><tr>
+ <td sortable-data="2plushuang-tw_ubuntu_uget-stable.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="plushuang-tw_ubuntu_uget-stable.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">plushuang-tw_ubuntu_uget-stable.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="365">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2ravefinity-project_ubuntu_ppa.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="ravefinity-project_ubuntu_ppa.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">ravefinity-project_ubuntu_ppa.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="371">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2shimmerproject_ubuntu_daily.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="shimmerproject_ubuntu_daily.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">shimmerproject_ubuntu_daily.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="370">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2tuxpoldo_ubuntu_btsync.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="tuxpoldo_ubuntu_btsync.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">tuxpoldo_ubuntu_btsync.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="357">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2ubuntukylin-archive-keyring.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="ubuntukylin-archive-keyring.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">ubuntukylin-archive-keyring.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="2251">3 KB</td>
+ <td sortable-data="1397162715000000">2014-04-10</td>
+ <td>22:45:15</td>
+</tr><tr>
+ <td sortable-data="2utappia_ubuntu_stable.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="utappia_ubuntu_stable.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">utappia_ubuntu_stable.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="1130">2 KB</td>
+ <td sortable-data="1467515248000000">2016-07-03</td>
+ <td>05:07:28</td>
+</tr><tr>
+ <td sortable-data="2v-2e_ubuntu_tox.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="v-2e_ubuntu_tox.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">v-2e_ubuntu_tox.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="1127">2 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2videolan_ubuntu_stable-daily.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="videolan_ubuntu_stable-daily.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">videolan_ubuntu_stable-daily.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="371">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2webupd8team_ubuntu_y-ppa-manager.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="webupd8team_ubuntu_y-ppa-manager.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">webupd8team_ubuntu_y-ppa-manager.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="507">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr><tr>
+ <td sortable-data="2xubuntu-dev_ubuntu_extras.gpg"><table class="ellipsis"><tbody><tr><td><a class="file" href="xubuntu-dev_ubuntu_extras.gpg"><img src="csakalinuxjo_elemei/a_002" alt="Fájl:">xubuntu-dev_ubuntu_extras.gpg</a></td></tr></tbody></table></td>
+ <td sortable-data="369">1 KB</td>
+ <td sortable-data="1466655558000000">2016-06-23</td>
+ <td>06:19:18</td>
+</tr></tbody></table>
+<div class="igtranslator-main-div"><iframe src="csakalinuxjo_elemei/a.html" class="igtranslator-iframe" scrolling="no" frameborder="0"></iframe></div><div class="igtranslator-activator-icon bounceIn" style="background-image: url(resource://jid1-dgnibwqga0sibw-at-jetpack/data/icons/home.png)" title="Click to Show Translation"></div></body></html>
