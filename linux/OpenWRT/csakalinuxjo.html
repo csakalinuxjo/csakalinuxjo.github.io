@@ -1,0 +1,978 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Linuxos Beágyazott Fejlesztési Környezet</title>
+	<meta name="generator" content="LibreOffice 5.4.1.2 (Linux)"/>
+	<meta name="created" content="2017-11-03T19:27:35.642354558"/>
+	<meta name="changed" content="2017-11-05T17:15:22.938698833"/>
+	<meta name="classification" content="LEDE"/>
+	<meta name="description" content="Üdvözöljük a LEDE Projektben
+
+A LEDE Project (Linux Embedded Development Environment) egy OpenWrt alapú Linux operációs rendszer. Ez egy komplett csere a vezeték nélküli útválasztók és nem hálózati eszközök széles választékának gyártó által biztosított firmware-jére. Lásd a támogatott eszközök Hardver táblázatát . A LEDE Project szervezetről további információt a LEDE oldalakról talál.
+Miért használja a LEDE-t?
+
+Az emberek telepítik a LEDE-t, mert úgy gondolják, hogy jobban működik, mint a készlet firmware-je az eladójától. Úgy találják, hogy stabilabb, több funkciót kínál, biztonságosabb és jobb támogatást nyújt.
+
+    Tágíthatóság: A LEDE számos olyan képességet kínál, amelyek csak a csúcskategóriás eszközökben találhatók meg. A 3000+ alkalmazási csomag szabványosított, így egyszerűen ugyanazt a telepítést is végrehajthatja bármely támogatott eszközön, beleértve két (vagy akár ötéves) routeret is. Több... 
+
+    Biztonság: A LEDE szabványos telepítése alapértelmezés szerint biztonságos, a Wi-Fi nincs engedélyezve, nincs rossz jelszó vagy háttérvilágítás. A LEDE szoftverkomponenseit naprakészen tartják, így a sebezhetőségek a felfedezésük után röviddel bezárulnak. Több... 
+
+    Teljesítmény és stabilitás: A LEDE firmware szabványosított modulokból készül, amelyeket minden támogatott eszközben használnak. Ez azt jelenti, hogy minden modul valószínűleg több tesztelést és hibakeresést fog kapni, mint az állományi firmware, amelyet minden termékcsaládhoz be lehet csípni, és soha többé nem érintette meg. Több... 
+
+    Erős közösségi támogatás: A LEDE csapattagok rendszeresen részt vesznek a LEDE Fórumon , a LEDE Developer és a LEDE Admin levelezőlistákon és a LEDE IRC csatornáin. Közvetlenül léphet kapcsolatba a fejlesztőkkel, az önkéntesekkel, akik kezelik a szoftver modulokat és más hosszú távú LEDE felhasználókkal, és drasztikusan növelik az esélyt, hogy megoldja a problémát. Több... 
+
+    Kutatás: Számos csapat használja a LEDE-t, mint platformot a hálózat teljesítményének kutatásához. Ez azt jelenti, hogy sikeres kísérleteik javítása elsősorban a LEDE-ben lesz elérhető, jóval, mielőtt beépülne a fővonalba, a gyártó firmware-jébe. Több... 
+
+    Nyílt forrás / Nincs többletköltség: a LEDE pénzköltség nélkül áll rendelkezésre. Teljes egészében önkéntesekből álló csapat hozta létre: fejlesztők és fenntartók, egyének és vállalatok. Ha élvezni fogja a LEDE használatát, fontolja meg, hogy hozzájáruljon ahhoz, hogy segítsen nekünk javítani mások számára! A fentiek mindegyike lehetséges, mert a LEDE a nyílt forráskódú közösség része, és a Linux kernel működik. Szerezd meg a forráskódot ... 
+
+    És még több ... További okok a LEDE használatára ... 
+
+Töltse le a LEDE
+
+A LEDE közösség büszke arra, hogy bemutatja az aktuális LEDE 17.01 stabil verziót. Ez magában foglalja ezernyi elkötelezettséget az elmúlt kilenc hónapban. Ezzel a kiadással a LEDE fejlesztő csapata jelentős erőfeszítéseket tesz lehetővé az OpenWrt számos részének korszerűsítésére és sok új modul, csomag és technológia beépítésére.
+
+A LEDE 17.01 sorozat célja, hogy létrehozza a LEDE első stabil konstrukcióját a termeléshez, és alapot adjon a jövőbeli fejlesztésekhez és kiadásokhoz.
+
+Jelenlegi kiadás - LEDE 17.01.4
+
+A legfrissebb verzió a LEDE 17.01.4, a LEDE 17.01 sorozat negyedik szolgáltatási kiadása.
+
+    Firmware letöltése
+    Forrás böngészése
+    Kiadási megjegyzések
+    Részletes változat 
+
+LEDE akarja!
+
+Mint minden nyílt forráskódú projekt, a LEDE a felhasználók és a fejlesztők erőfeszítéseiért is felvirágozik.
+
+    Ha fejleszteni szeretné a szoftvert, kérjük, olvassa el Fejlesztői útmutatónkat, ahol megtudhatja, hogyan szerezheti be a forráskódot, építhesse azt, és hozzájárulhat a változásokhoz a projekthez. 
+
+    Ha nem vagy fejlesztő, akkor továbbra is segíthet. A dokumentáció mindig javítható (még akkor is, ha ellenőrizni tudja, hogy az utasítások megfelelnek-e az Ön tapasztalatainak), vagy kérdéseiddel segíthet más közösségi tagokkal. Ne habozzon Regisztráljon magának a wikiben , vagy csatlakozzon a levelezési listánkhoz és az IRC csatornáihoz , hogy kapcsolatba léphessünk velük. 
+
+Elismerések
+
+A * Wrt közösség számos nagyszerű közösségből áll, amelyek mindegyike saját bürokráciájukra törekszik, hogy javítson valamit ezen a bolygón."/>
+	<meta name="keywords" content="OpenWRT, LEDE"/>
+	<meta name="Célok" content=" A LEDE Project (Linux Embedded Development Environment) egy OpenWrt alapú Linux operációs rendszer. Ez egy komplett csere a vezeték nélküli útválasztók és nem hálózati eszközök széles választékának gyártó által biztosított firmware-jére. Lásd a támogatott eszközök Hardver táblázatát . A LEDE Project szervezetről további információt a LEDE oldalakról talál."/>
+	<meta name="E-mail" content="lede-bugs@lists.infradead.org"/>
+	<meta name="URL" content="https://translate.google.hu/translate?sl=en&amp;tl=hu&amp;js=y&amp;prev=_t&amp;hl=hu&amp;ie=UTF-8&amp;u=http%3A%2F%2Flists.infradead.org%2Fmailman%2Flistinfo%2Flede-bugs&amp;edit-text=&amp;act=url"/>
+	<meta name="WEB" content="https://translate.google.hu/translate?sl=en&amp;tl=hu&amp;js=y&amp;prev=_t&amp;hl=hu&amp;ie=UTF-8&amp;u=https%3A%2F%2Flede-project.org%2F&amp;edit-text=&amp;act=url"/>
+</head>
+<body lang="hu-HU" dir="ltr">
+<div id="Keret1" dir="ltr" style="position: absolute; top: 0cm; left: 0cm; width: 100%; height: 0.04cm; border: none; padding: 0cm; background: #ffffff">
+	<p align="center"><font color="#000000"><font size="2" style="font-size: 10pt">40148
+	kB / 60664 kB (66%)</font></font></p>
+</div>
+<div id="Keret2" dir="ltr" style="position: absolute; top: 0cm; left: 0cm; width: 100%; height: 0.04cm; border: none; padding: 0cm; background: #ffffff">
+	<p align="center"><font color="#000000"><font size="2" style="font-size: 10pt">38256
+	kB / 60664 kB (63%)</font></font></p>
+</div>
+<div id="Keret3" dir="ltr" style="position: absolute; top: 0cm; left: 0cm; width: 100%; height: 0.04cm; border: none; padding: 0cm; background: #ffffff">
+	<p align="center"><font color="#000000"><font size="2" style="font-size: 10pt">1892
+	kB / 60664 kB (3%)</font></font></p>
+</div>
+<address><a href="https://translate.google.hu/translate?sl=en&amp;tl=hu&amp;js=y&amp;prev=_t&amp;hl=hu&amp;ie=UTF-8&amp;u=https%3A%2F%2Flede-project.org%2F&amp;edit-text=&amp;act=url" target="_blank"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt"><span style="font-style: normal">LEDE
+- Linuxos Beágyazott Fejlesztési Környezet </span></font></font></font></a>
+</address>
+<address style="font-style: normal"><br/>
+
+</address>
+<address style="font-style: normal"><br/>
+
+</address>
+<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">Állapot</font></font></font></address>
+<address style="font-style: normal"><br/>
+
+</address>
+<table width="514" cellpadding="0" cellspacing="0">
+	<col width="143">
+	<col width="370">
+	<tr>
+		<td width="143" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">Gépnév</font></font></font></address>
+		</td>
+		<td width="370" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">LEDE</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="143" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">Model</font></font></font></address>
+		</td>
+		<td width="370" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">TP-Link
+			TL-WR2543N/ND v1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="143" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">Tűzfal
+			verzió</font></font></font></address>
+		</td>
+		<td width="370" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">LEDE
+			Reboot SNAPSHOT r5240-e0bd225 / </font></font></font>
+			</address>
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">LuCI
+			Master (git-17.309.31241-676ce11) </font></font></font>
+			</address>
+		</td>
+	</tr>
+	<tr>
+		<td width="143" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">Kernel
+			verzió</font></font></font></address>
+		</td>
+		<td width="370" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="143" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><a name="localtime"></a><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">Helyi
+			idő</font></font></font></address>
+		</td>
+		<td width="370" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><sdfield type=DATETIME sdval="43044,7031578194" sdnum="1038;1038;YYYY-MM-DD">2017-11-05</sdfield>
+			<sdfield type=DATETIME sdval="43044,703269102" sdnum="1038;1038;HH:MM:SS">16:52:42</sdfield></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="143" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><a name="uptime"></a><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">Működési
+			idő</font></font></font></address>
+		</td>
+		<td width="370" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">0h
+			21m 19s</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="143" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><a name="loadavg"></a><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">Átlagos
+			terhelés</font></font></font></address>
+		</td>
+		<td width="370" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">0.00,
+			0.02, 0.08</font></font></font></address>
+		</td>
+	</tr>
+</table>
+<address style="font-style: normal"><br/>
+
+</address>
+<address style="font-style: normal"><br/>
+
+</address>
+<address><a href="http://192.168.1.1/cgi-bin/luci/admin/system/packages" target="_blank"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt"><span style="font-style: normal">LEDE
+- Szoftver - LuCI </span></font></font></font></a><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt"><span style="font-style: normal">
+</span></font></font></font>
+</address>
+<address style="font-style: normal"><br/>
+
+</address>
+<address style="font-style: normal"><br/>
+
+</address>
+<address><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt"><span style="font-style: normal">Szabad
+hely: </span></font></font></font><strong><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt"><span style="font-style: normal">79%</span></font></font></font></strong><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt"><span style="font-style: normal">
+(</span></font></font></font><strong><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt"><span style="font-style: normal">3.52
+MB</span></font></font></font></strong><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt"><span style="font-style: normal">)
+</span></font></font></font>
+</address>
+<address style="font-style: normal"><font color="#1c052e">&nbsp;</font></address>
+<address style="font-style: normal"><br/>
+
+</address>
+<form action="/cgi-bin/luci/admin/system/packages" method="post">
+	<address style="font-style: normal"><font color="#1c052e"><input type="text" name="url"  size="30" style="width: 6.56cm; height: 0.66cm">
+	</font>
+	</address>
+</form>
+<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">Állapot</font></font></font></address>
+<ul>
+	<li/>
+<address><a href="http://192.168.1.1/cgi-bin/luci/admin/system/packages?display=installed&amp;query=" target="_blank"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt"><span style="font-style: normal">Telepített
+	csomagok </span></font></font></font></a><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt"><span style="font-style: normal">
+	</span></font></font></font>
+	</address>
+</ul>
+<address><font color="#1c052e"> </font>
+</address>
+<table width="490" cellpadding="2" cellspacing="0">
+	<col width="233">
+	<col width="249">
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">Csomagnév</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">Verzió</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">base-files</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">177-r5240-e0bd225</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">busybox</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">1.27.2-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">dnsmasq</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2.78-2</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">dropbear</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017.75-4</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">firewall</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-05-27-a4d98aea-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">fstools</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-07-31-8ab4fda6-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">fwtool</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">hostapd-common</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-08-24-c2d4f2eb-4</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">ip6tables</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">1.6.1-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">iptables</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">1.6.1-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">iw</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">iwinfo</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-08-23-c1a03e82-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">jshn</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-09-29-632688e8-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">jsonfilter</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2016-07-02-dea067ad-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kernel</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1-eff5008ef5ad..6c0</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-ath</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58+2017-10-06-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-ath9k</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58+2017-10-06-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-ath9k-common</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58+2017-10-06-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-cfg80211</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58+2017-10-06-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-gpio-button-hotplug</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-2</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-ip6tables</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-ipt-conntrack</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-ipt-core</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-ipt-nat</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-lib-crc-ccitt</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-mac80211</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58+2017-10-06-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-nf-conntrack</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-nf-conntrack6</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-nf-ipt</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-nf-ipt6</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-nf-nat</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-nls-base</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-ppp</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-pppoe</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-pppox</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-slhc</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-usb-core</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-usb-ehci</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-usb-ledtrig-usbport</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">kmod-usb2</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">4.9.58-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">lede-keyring</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-01-20-a50b7529-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libblobmsg-json</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-09-29-632688e8-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libc</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">1.1.16-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libgcc</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">5.5.0-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libip4tc</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">1.6.1-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libip6tc</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">1.6.1-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libiwinfo</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-08-23-c1a03e82-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libiwinfo-lua</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-08-23-c1a03e82-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libjson-c</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">0.12.1-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libjson-script</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-09-29-632688e8-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">liblua</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">5.1.5-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libnl-tiny</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">0.1-5</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libpthread</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">1.1.16-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libubox</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-09-29-632688e8-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libubus</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-02-18-34c6e818-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libubus-lua</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-02-18-34c6e818-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libuci</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-09-29-5ad59ad4-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libuci-lua</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-09-29-5ad59ad4-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libuclient</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-11-02-4b87d831-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">libxtables</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">1.6.1-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">logd</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-09-01-b1bc8d5f-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">lua</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">5.1.5-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">luci</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">git-17.309.31241-676ce11-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">luci-app-firewall</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">git-17.309.31241-676ce11-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">luci-base</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">git-17.309.31241-676ce11-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">luci-i18n-base-hu</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">git-17.309.31241-676ce11-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">luci-lib-ip</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">git-17.309.31241-676ce11-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">luci-lib-jsonc</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">git-17.309.31241-676ce11-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">luci-lib-nixio</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">git-17.309.31241-676ce11-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">luci-mod-admin-full</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">git-17.309.31241-676ce11-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">luci-proto-ipv6</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">git-17.309.31241-676ce11-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">luci-proto-ppp</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">git-17.309.31241-676ce11-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">luci-theme-bootstrap</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">git-17.309.31241-676ce11-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">mtd</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">21</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">netifd</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-10-31-0f96606b-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">odhcp6c</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-09-05-51733a6d-4</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">odhcpd</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-09-16-f0bce9cd-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">opkg</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-07-28-4bd8601e-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">ppp</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2.4.7-12</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">ppp-mod-pppoe</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2.4.7-12</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">procd</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-09-28-ee582d16-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">rpcd</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2016-12-03-0577cfc1-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">rpcd-mod-rrdns</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">20170710</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">swconfig</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">11</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">uboot-envtools</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2015.10-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">ubox</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-09-01-b1bc8d5f-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">ubus</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-02-18-34c6e818-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">ubusd</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-02-18-34c6e818-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">uci</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-09-29-5ad59ad4-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">uclient-fetch</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-11-02-4b87d831-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">uhttpd</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-08-19-3fd58e9b-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">uhttpd-mod-ubus</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-08-19-3fd58e9b-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">usign</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2015-07-04-ef641914-1</font></font></font></address>
+		</td>
+	</tr>
+	<tr>
+		<td width="233" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">wpad-mini</font></font></font></address>
+		</td>
+		<td width="249" style="border: none; padding: 0cm">
+			<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">2017-08-24-c2d4f2eb-4</font></font></font></address>
+		</td>
+	</tr>
+</table>
+<address><br/>
+
+</address>
+<address><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt"><span style="font-style: normal"><a href="https://github.com/openwrt/luci" target="_blank">Powered
+by LuCI Master (git-17.309.31241-676ce11)</a> / </span></font></font></font>
+</address>
+<address style="font-style: normal"><font color="#1c052e"><font face="Ubuntu"><font size="4" style="font-size: 14pt">LEDE
+Reboot SNAPSHOT r5240-e0bd225 </font></font></font>
+</address>
+</body>
+</html>
