@@ -1,0 +1,6 @@
+deb http://ppa.launchpad.net/hda-me/qt5ct/ubuntu/ xenial main
+deb-src http://ppa.launchpad.net/hda-me/qt5ct/ubuntu/ xenial main
+
+
+
+
