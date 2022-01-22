@@ -1,0 +1,24 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/nvme0n1p2 during installation
+UUID=821268e2-963b-40b7-9998-bd57aa2abc4e /               btrfs   defaults,subvol=@ 0       1
+# /boot was on /dev/nvme1n1p3 during installation
+UUID=f24ae69f-c61d-410c-b6f6-e4b823c9017c /boot           btrfs   defaults        0       2
+# /boot/efi was on /dev/nvme0n1p4 during installation
+UUID=08D0-339F  /boot/efi       vfat    umask=0077      0       1
+# /home was on /dev/nvme1n1p4 during installation
+UUID=327ac336-f5f7-43b5-b52f-9c143a2de94c /home           btrfs   defaults,subvol=@home 0       2
+# /home/csakalinuxjo/Letöltések was on /dev/sda4 during installation
+UUID=be2badc9-12d7-4fbe-8e7f-48d3886217ad /home/csakalinuxjo/Letöltések btrfs   defaults        0       2
+/swapfile                                 none            swap    sw              0       0
+/dev/disk/by-uuid/72c9c843-7664-4940-a946-0697cbe6a64b none swap sw 0 0
+/dev/disk/by-uuid/f8aa6e15-4706-4175-9ee0-5a3046680c9b none swap sw 0 0
+/dev/disk/by-id/wwn-0x50014ee26442b2c9-part5 none swap sw 0 0
+/dev/disk/by-id/wwn-0x50025388a025e095-part4 none swap sw 0 0
+/dev/disk/by-id/wwn-0x5002538e406265c0-part4 none swap sw 0 0
+/dev/disk/by-id/wwn-0x50014ee205af62c7-part4 none swap sw 0 0
